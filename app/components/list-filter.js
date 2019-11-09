@@ -7,7 +7,7 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.filter('').then((allResults) => {
-      this.set('restuls', allResults.results);
+      this.set('results', allResults.results);
     });
   },
 
@@ -16,8 +16,11 @@ export default Component.extend({
       let filterInputValue = this.value;
       let filterAction = this.filter;
       filterAction(filterInputValue).then((filterResults) => {
-        this.set('results', filterResults.results);
+        if (filterResults.query === this.value) {
+          this.set('results', filterResults.results);
+        }
       });
     }
   }
+
 });

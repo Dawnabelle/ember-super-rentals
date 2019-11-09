@@ -11,7 +11,7 @@ export default Controller.extend({
       } else {
         return this.store
           .findAll('rental').then((results) => {
-            return { query: param, results: results};
+            return { query: param, results: results };
           });
       }
     }

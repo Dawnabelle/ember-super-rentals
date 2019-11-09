@@ -6,13 +6,13 @@
 </div>
 
 <ListFilter
-@filter={{action "filterByCity"}}
+ @filter={{action "filterByCity"}}
 as |filteredResults|
 >
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
       <li><RentalListing @rental={{rentalUnit}} /></li>
-      {{/each}}
+    {{/each}}
   </ul>
 </ListFilter>
 {{outlet}}
