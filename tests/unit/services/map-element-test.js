@@ -5,7 +5,6 @@ const DUMMY_ELEMENT = {};
 
 module('Unit | Service | map-element', function(hooks) {
   setupTest(hooks);
-
   test('should create a new map if one isnt cached for location', async function (assert) {
     assert.expect(5);
     let stubMapService = {
@@ -38,4 +37,3 @@ module('Unit | Service | map-element', function(hooks) {
   });
 
 });
-.
