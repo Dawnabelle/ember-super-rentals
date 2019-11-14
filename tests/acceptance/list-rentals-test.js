@@ -1,3 +1,4 @@
+import Service from '@ember/service';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
@@ -9,9 +10,19 @@ import {
   triggerKeyEvent
 } from '@ember/test-helpers';
 
+let StubMapsService = Service.extend({
+  getMapElement() {
+    return Promise.resolve(document.createElement('div'));
+  }
+});
+
 module('Acceptance | list rentals', function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
+
+  hooks.beforeEach(function() {
+    this.owner.register('service:map-element', StubMapsService);
+  });
 
   test('should show rentals as the home page', async function (assert) {
     await visit('/');
@@ -38,7 +49,6 @@ module('Acceptance | list rentals', function (hooks) {
     assert.equal(this.element.querySelectorAll('.results .listing').length, 1, 'should display 1 listing');
     assert.ok(this.element.querySelector('.listing .location').textContent.includes('Seattle'), 'should contain 1 listing with location Seattle');
   });
-  test('should show details for a selected rental', async function (assert) {
-  });
+
 
 });
